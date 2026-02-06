@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { Linking, ScrollView, Text, View } from "react-native";
 
 interface pokemon{
   name: string;
@@ -29,9 +29,13 @@ async function fetchPokemon() {
   return (
     <ScrollView>
       {pokemon.map((pokemon)=>(
-        <view key={pokemon.name}>
-          <text>{pokemon.name}</text>
-        </view>
+        <View key={pokemon.name}>
+          <Text>{pokemon.name}</Text>
+            <Text>{pokemon.url}</Text>
+            <Text onPress={() => Linking.openURL(pokemon.url)}>
+              {pokemon.name}
+            </Text>
+        </View>
       ))}
     </ScrollView>
   );
